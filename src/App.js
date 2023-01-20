@@ -7,6 +7,7 @@ import Footer from './Components/Footer'
 //Website Pages Layout.
 import HomePage from './Pages/HomePage'
 import ProductPage from './Pages/ProductPage'
+import CartPage from './Pages/CartPage'
 
 
 function App() {
@@ -20,6 +21,8 @@ function App() {
           <Routes>
           <Route path='/' exact element={<HomePage />}/>
           <Route path='/product/:id' element={<ProductPage />}/>
+          <Route path='/cart/:id' element={<CartPage />}/>
+          <Route path='/cart/' element={<CartPage />}/>
           </Routes>
         </Container>
       </main>
