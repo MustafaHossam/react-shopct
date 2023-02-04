@@ -4,23 +4,26 @@ import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
 
-
-
+import { useLocation } from 'react-router-dom'
 
 import Product from '../Components/Product'
 import Loader from '../Components/Loader'
 import Message from '../Components/Message'
+import Paginate from '../Components/Paginate'
 import { listProducts } from '../actions/productActions'
 
 function HomePage() {
   const dispatch = useDispatch()
   const productList = useSelector(state => state.productList)
-  const {error, loading, products} = productList
-
+  const {error, loading, products, page, pages} = productList
+  const location = useLocation();
+  let keyword = location.search
+  //console.log(keyword)
+  
   useEffect(() =>{
-    dispatch(listProducts())
+    dispatch(listProducts(keyword))
     
-  }, [dispatch])
+  }, [dispatch, keyword])
   
   return (
     <div>
@@ -28,6 +31,7 @@ function HomePage() {
         {loading ? <Loader/>
             : error ? <Message variant='danger'>{error}</Message>
                 : 
+                <div>
                 <Row>
                     {products.map( product => (
                     <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
@@ -35,6 +39,8 @@ function HomePage() {
                     </Col>
                      ))}
                   </Row>
+                  <Paginate pages={pages} page={page} keyword={keyword}/>
+                </div>
       }
         
     </div>

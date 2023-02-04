@@ -1,6 +1,7 @@
 import React from 'react'
 import { Navbar,Nav,Container,Row } from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
+import SearchBox from './SearchBox'
 
 function Header() {
   return (
@@ -12,6 +13,10 @@ function Header() {
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
+
+          
+
+          
           <Nav className="justify-content-end ">
             <LinkContainer to='/cart'>
               <Nav.Link><i className='fas fa-shopping-cart'></i> Cart</Nav.Link>
